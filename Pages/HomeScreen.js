@@ -18,7 +18,6 @@ const HomeScreen = () => {
         name="USA"
         children={() => <ConferencesPage country="usa" />}
       />
-      <Tab.Screen name="Uk" children={() => <ConferencesPage country="uk" />} />
       <Tab.Screen
         name="Canada"
         children={() => <ConferencesPage country="canada" />}
