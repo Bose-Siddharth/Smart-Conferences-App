@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const ConferenceContext = createContext();
 
 const ConferenceProvider = ({ children }) => {
-  const [isItemSelected, setIsItemSelected] = useState(false);
+  const [isItemSelected, setIsItemSelected] = useState(true);
   const [selectedItem, setSelectedItem] = useState("");
 
   return (

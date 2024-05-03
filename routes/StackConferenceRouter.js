@@ -8,7 +8,7 @@ const StackConferenceRouter = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="HomeScreen"
         options={{ headerTitle: "SMART Society Conferences" }}
         component={HomeScreen}
       />

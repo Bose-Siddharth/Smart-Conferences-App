@@ -13,15 +13,21 @@ import confInUsa from "../constants/usa";
 import confInUk from "../constants/uk";
 import confInCanada from "../constants/canada";
 import Layout from "../Components/Layout";
+import { useConference } from "../context/ConferenceProvider";
 
 const windowWidth = Dimensions.get("window").width;
 const numColumns = 2;
 const itemWidth = (windowWidth - 30 * (numColumns + 1)) / numColumns;
 
 const ConferenceCard = ({ item }) => {
+  const { setIsItemSelected, setSelectedItem } = useConference();
   const conference = item;
+  const handlePress = () => {
+    setSelectedItem(conference.key);
+    setIsItemSelected(true);
+  };
   return (
-    <Pressable style={styles.cardContainer}>
+    <Pressable style={styles.cardContainer} onPress={handlePress}>
       <View style={styles.headerImage}>
         <Image
           source={{

@@ -20,7 +20,7 @@ export default confInUsa = [
   {
     id: 3,
     name: "World AI & IOT Congress",
-
+    key: "worldaiiotcongress",
     logoImg:
       "https://ieee-uemcon.org/wp-content/uploads/2023/04/299px-IEEE_logo.svg_.png",
     backgroundImg:

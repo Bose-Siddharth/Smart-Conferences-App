@@ -1,12 +1,14 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import { useConference } from "../context/ConferenceProvider";
 
 const CommitteeScreen = () => {
+  const { selectedItem } = useConference();
   return (
     <View>
-      <Text>CommitteeScreen</Text>
+      <Text>{selectedItem}</Text>
     </View>
-  )
-}
+  );
+};
 
-export default CommitteeScreen
+export default CommitteeScreen;

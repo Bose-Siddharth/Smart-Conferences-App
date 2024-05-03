@@ -1,9 +1,6 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import ConferencesPage from "./ConferencesPage";
-import ConferencesInCanada from "./ConferencesInCanada";
-import ConferencesInUK from "./ConferencesInUK";
-import ConferencesInUSA from "./ConferencesInUSA";
 
 const Tab = createMaterialTopTabNavigator();
 
