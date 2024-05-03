@@ -1,7 +1,16 @@
-import { View, Text, Button, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { useConference } from "../context/ConferenceProvider";
 import conferences from "../constants/conferences.json";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const ConferenceHomeScreen = () => {
   const { selectedItem } = useConference();
@@ -10,24 +19,35 @@ const ConferenceHomeScreen = () => {
     // return conference.key === selectedItem;
   });
   conference = conference[0];
-  console.log("====================================");
-  console.log(conference);
-  console.log("====================================");
   return (
     <View>
       <View>
-        <Image source={{ uri: conference.imageLink }} style={{ height: 175 }} />
+        <Image source={require("../assets/world.jpg")} style={styles.image} />
       </View>
       <View style={styles.aboutContainer}>
-        <Text>World AI IoT Conference</Text>
-        <Text> About the Conference</Text>
-        <Text>When is the event?</Text>
-        <View>
-          <Text>Icon</Text>
-          <Text>Date</Text>
+        <Text style={styles.conferenceName}>{conference.conferenceName}</Text>
+        <View style={styles.dateContainer}>
+          <Icon name="calendar" size={18} color="#2cdcd4" />
+          <Text style={styles.date}>29 – 31 May 2024</Text>
         </View>
+        <Text style={styles.about}>About the Conference</Text>
+        <ScrollView
+        // contentContainerStyle={styles.aboutContainer}
+        // scrollEnabled={true}
+        >
+          {conference.about.split("<br/>").map((line, index) => (
+            <Text key={index}>
+              {line}
+              {"\n"}
+            </Text>
+          ))}
+        </ScrollView>
       </View>
-      <Button title="See Keynote Speakers" />
+      <View style={styles.buttonContainer}>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>See Keynote Speakers</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -37,10 +57,51 @@ export default ConferenceHomeScreen;
 const styles = StyleSheet.create({
   aboutContainer: {
     // flex: 1,
-    height: "100%",
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
+
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
     backgroundColor: "#fff",
     marginTop: -20,
+    // paddingHorizontal: 20,
+    padding: 16,
+    gap: 10,
+  },
+  image: {
+    height: 200,
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "100%",
+  },
+  conferenceName: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  about: {
+    color: "#2cdcd4",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  dateContainer: {
+    flexDirection: "row",
+    gap: 16,
+    alignItems: "center",
+  },
+  date: { fontSize: 16, fontWeight: "bold" },
+  buttonContainer: {
+    padding: 10,
+    backgroundColor: "#fff",
+    marginTop: "auto",
+    height: "10%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    borderRadius: 8,
+    backgroundColor: "#2cdcd4",
+    padding: 12,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
