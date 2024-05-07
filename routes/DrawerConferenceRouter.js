@@ -4,12 +4,13 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { Button, View } from "react-native"; // Assuming you are using React Native
+import { Button, Pressable, Text, View } from "react-native"; // Assuming you are using React Native
 import ConferenceHomeScreen from "../Pages/ConferenceHomeScreen";
 import CommitteeScreen from "../Pages/CommitteeScreen";
 import KeynoteScreen from "../Pages/KeynoteScreen";
-import ContactScreen from "../Pages/ContactScreen";
+import ImportantDatesScreen from "../Pages/ImportantDatesScreen";
 import { useConference } from "../context/ConferenceProvider";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Drawer = createDrawerNavigator();
 
@@ -29,7 +30,22 @@ const CustomDrawerContent = (props) => {
       <View
         style={{ marginVertical: 20, paddingHorizontal: 10, marginTop: "auto" }}
       >
-        <Button title="Logout" onPress={handleLogout} />
+        <Pressable
+          style={{
+            flexDirection: "row",
+            gap: 10,
+            justifyContent: "center",
+            padding: 16,
+            backgroundColor: "rgba(189, 233, 231, 1)",
+            borderRadius: 16,
+            borderColor: "rgba(44, 220, 212, 0.6)",
+            borderWidth: 2,
+          }}
+          onPress={handleLogout}
+        >
+          <Icon name="arrow-left" size={18} color="#2cdcd4" />
+          <Text>All Conferences</Text>
+        </Pressable>
       </View>
     </DrawerContentScrollView>
   );
@@ -43,7 +59,7 @@ const DrawerConferenceRouter = () => {
       <Drawer.Screen name="Home" component={ConferenceHomeScreen} />
       <Drawer.Screen name="Committee" component={CommitteeScreen} />
       <Drawer.Screen name="Keynote" component={KeynoteScreen} />
-      <Drawer.Screen name="Contact" component={ContactScreen} />
+      <Drawer.Screen name="Dates" component={ImportantDatesScreen} />
     </Drawer.Navigator>
   );
 };

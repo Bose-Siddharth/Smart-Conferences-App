@@ -7,6 +7,7 @@ import {
   Pressable,
   Image,
   Dimensions,
+  Alert,
 } from "react-native";
 import confInIndia from "../constants/india";
 import confInUsa from "../constants/usa";
@@ -27,11 +28,25 @@ const ConferenceCard = ({ item }) => {
     setIsItemSelected(true);
   };
   return (
-    <Pressable style={styles.cardContainer} onPress={handlePress}>
+    <Pressable
+      style={[!conference.isReady && { opacity: 0.5 }, styles.cardContainer]}
+      onPress={
+        conference.isReady
+          ? handlePress
+          : () => {
+              Alert.alert(
+                "Coming Soon",
+                "Whoops! 🚀 Hold tight! This event is under wraps, but trust us, it's worth the wait! 🎉"
+              );
+            }
+      }
+    >
       <View style={styles.headerImage}>
         <Image
           source={{
-            uri: conference.backgroundImg,
+            uri: conference.isReady
+              ? conference.backgroundImg
+              : "https://t4.ftcdn.net/jpg/02/96/69/41/360_F_296694103_sXwljVpU8mpCOpREQCNUbHPI0hY73fcl.jpg",
           }}
           style={styles.conferenceImage}
         />

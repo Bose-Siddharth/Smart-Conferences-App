@@ -9,16 +9,12 @@ import {
 } from "react-native";
 import React from "react";
 import { useConference } from "../context/ConferenceProvider";
-import conferences from "../constants/conferences.json";
+
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const ConferenceHomeScreen = () => {
-  const { selectedItem } = useConference();
-  let conference = conferences.conferences.filter((conference) => {
-    return conference.key === "worldaiiotcongress";
-    // return conference.key === selectedItem;
-  });
-  conference = conference[0];
+const ConferenceHomeScreen = ({ navigation }) => {
+  const { conference } = useConference();
+
   return (
     <View>
       <View>
@@ -44,7 +40,12 @@ const ConferenceHomeScreen = () => {
         </ScrollView>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("Keynote");
+          }}
+        >
           <Text style={styles.buttonText}>See Keynote Speakers</Text>
         </Pressable>
       </View>

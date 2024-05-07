@@ -6,14 +6,14 @@ const Tab = createMaterialTopTabNavigator();
 
 const HomeScreen = () => {
   return (
-    <Tab.Navigator initialRouteName="India">
-      <Tab.Screen
-        name="India"
-        children={() => <ConferencesPage country="ind" />}
-      />
+    <Tab.Navigator initialRouteName="USA">
       <Tab.Screen
         name="USA"
         children={() => <ConferencesPage country="usa" />}
+      />
+      <Tab.Screen
+        name="India"
+        children={() => <ConferencesPage country="ind" />}
       />
       <Tab.Screen
         name="Canada"
