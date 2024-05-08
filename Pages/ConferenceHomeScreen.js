@@ -11,6 +11,7 @@ import React from "react";
 import { useConference } from "../context/ConferenceProvider";
 
 import Icon from "react-native-vector-icons/FontAwesome";
+import EvilIcon from "react-native-vector-icons/FontAwesome6";
 
 const ConferenceHomeScreen = ({ navigation }) => {
   const { conference } = useConference();
@@ -25,6 +26,10 @@ const ConferenceHomeScreen = ({ navigation }) => {
         <View style={styles.dateContainer}>
           <Icon name="calendar" size={18} color="#2cdcd4" />
           <Text style={styles.date}>29 – 31 May 2024</Text>
+        </View>
+        <View style={styles.dateContainer}>
+          <EvilIcon name="location-dot" size={18} color="#2cdcd4" />
+          <Text style={styles.date}> Seattle Convention Center, USA</Text>
         </View>
         <Text style={styles.about}>About the Conference</Text>
         <ScrollView

@@ -1,74 +1,87 @@
+import { View, Text, Platform, ScrollView } from "react-native";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import EventDateCard from "../Components/EventDateCard";
+import { useConference } from "../context/ConferenceProvider";
 
 const ImportantDatesScreen = () => {
-  // Define the event details
-  const events = [
-    { name: "Full Paper Submission", date: "3rd April 2024" },
-    { name: "Acceptance Notification", date: "19th April 2024" },
-    { name: "Final Paper Submission", date: "12th May 2024" },
-    { name: "Early Bird Registration", date: "3rd May 2024" },
-    { name: "Presentation Submission", date: "12th May 2024" },
-    { name: "Conference", date: "29 – 31 May 2024" },
-  ];
-
-  // Calculate the step for each event
-  const calculateStep = (index) => {
-    return `${index * (100 / events.length)}%`;
-  };
+  const { conference } = useConference();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.progressBar}></View>
-      {events.map((event, index) => (
-        <View key={index} style={[styles.event, { top: calculateStep(index) }]}>
-          <View style={styles.step}>
-            <Text style={styles.stepText}>{event.date}</Text>
+    <ScrollView style={{ flex: 1, backgroundColor: "#fff", paddingTop: 10 }}>
+      <View
+        style={{
+          // flex: 1,
+          height: 100,
+          borderRadius: 16,
+          marginHorizontal: 10,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#93dad6",
+          borderWidth: 1,
+          borderColor: "#eee",
+          ...Platform.select({
+            ios: {
+              shadowColor: "#000",
+              shadowOffset: { width: -5, height: -5 },
+              shadowOpacity: 0.2,
+              shadowRadius: 3,
+            },
+            android: {
+              elevation: 8,
+            },
+          }),
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            color: "white",
+            color: "#444",
+            textShadowRadius: 1,
+            textShadowOffset: {
+              width: 2,
+              height: 2,
+            },
+            textShadowColor: "#fff",
+            // marginTop: "auto",
+          }}
+        >
+          IMPORTANT DATES
+        </Text>
+        {/* <View
+          style={{
+            flex: 1 / 2,
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            paddingHorizontal: 50,
+            color: "white",
+          }}
+        >
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
+            Date
+          </Text>
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
+            Event
+          </Text>
+        </View> */}
+      </View>
+      {conference.importantDates.map((date) => (
+        <View key={date.id}>
+          <View style={{ marginVertical: 5 }}></View>
+          <View style={{ marginHorizontal: 16 }}>
+            <EventDateCard
+              date={date.date}
+              event={date.dateDescription}
+              index={date.id}
+            />
           </View>
-          <Text style={styles.eventName}>{event.name}</Text>
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    position: "relative",
-  },
-  progressBar: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    left: "50%",
-    width: 2,
-    backgroundColor: "#2cdcd4",
-  },
-  event: {
-    position: "absolute",
-    left: 10,
-    width: "90%",
-  },
-  step: {
-    width: 100,
-    alignItems: "flex-end",
-    paddingRight: 10,
-    marginBottom: 10,
-  },
-  stepText: {
-    fontWeight: "bold",
-    textAlign: "right",
-  },
-  eventName: {
-    marginLeft: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-});
 
 export default ImportantDatesScreen;

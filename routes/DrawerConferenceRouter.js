@@ -25,7 +25,10 @@ const CustomDrawerContent = (props) => {
   };
 
   return (
-    <DrawerContentScrollView {...props} contentContainerStyle={{ flex: 1 }}>
+    <DrawerContentScrollView
+      {...props}
+      contentContainerStyle={{ flex: 1, gap: 16 }}
+    >
       <DrawerItemList {...props} />
       <View
         style={{ marginVertical: 20, paddingHorizontal: 10, marginTop: "auto" }}
@@ -55,6 +58,15 @@ const DrawerConferenceRouter = () => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={{
+        drawerActiveBackgroundColor: "rgba(189, 233, 231, 1)",
+        drawerActiveTintColor: "#666",
+        drawerLabelStyle: {
+          fontSize: 16,
+          fontWeight: "600",
+          marginLeft: "10%",
+        },
+      }}
     >
       <Drawer.Screen name="Home" component={ConferenceHomeScreen} />
       <Drawer.Screen name="Committee" component={CommitteeScreen} />

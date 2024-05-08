@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 const AuthRouter = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Login"
+      initialRouteName="Home"
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Home" component={LandingScreen} />

@@ -63,7 +63,7 @@ const KeynoteSpeakerCard = ({ name, affiliation, imageLink, index }) => {
           <View
             style={{
               paddingHorizontal: 10,
-              flexDirection: "row",
+              flexDirection: index % 2 === 0 ? "row" : "row-reverse",
               flex: 1,
               justifyContent: "space-evenly",
               alignItems: "center",
